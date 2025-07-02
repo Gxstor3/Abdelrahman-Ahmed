@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عبد الرحمن احمد | مهندس نظم معلومات ومدير إداري</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <style>
+        :root {
+            --bg-color-light: #f0f2f5;
+            --text-color-light: #1f2937;
+            --card-bg-light: rgba(255, 255, 255, 0.6);
+            --border-color-light: rgba(209, 213, 219, 0.8);
+            
+            --bg-color-dark: #111827;
+            --text-color-dark: #e0e0e0;
+            --card-bg-dark: rgba(31, 41, 55, 0.5);
+            --border-color-dark: rgba(75, 85, 99, 0.6);
+
+            --primary-color: #ef4444;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Cairo', 'Roboto', sans-serif;
+            background-color: var(--bg-color-light);
+            color: var(--text-color-light);
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        .dark body {
+            background-color: var(--bg-color-dark);
+            color: var(--text-color-dark);
+        }
+
+        .card {
+            background-color: var(--card-bg-light);
+            border: 1px solid var(--border-color-light);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark .card {
+            background-color: var(--card-bg-dark);
+            border: 1px solid var(--border-color-dark);
+        }
+        
+        /* Glowing border effect */
+        .card::before {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, var(--primary-color), transparent, transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            top: var(--y, 0);
+            left: var(--x, 0);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .card:hover::before {
+            opacity: 0.2;
+        }
+
+
+        .text-primary { color: var(--primary-color); }
+        .bg-primary { background-color: var(--primary-color); }
+        
+        /* Language Display Rules */
+        html[dir="rtl"] [lang="en"] { display: none; }
+        html[dir="ltr"] [lang="ar"] { display: none; }
+        html[dir="ltr"] [lang="en"] { display: inline; }
+        html[dir="ltr"] body { font-family: 'Roboto', 'Cairo', sans-serif; }
+
+        /* Custom Cursor Hover Effect */
+        .cursor-hover-effect {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(239, 68, 68, 0.2);
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.2s ease-out;
+            display: none;
+        }
+        .cursor-hover-effect.visible {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        /* Particle background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        /* Modal styles */
+        .modal {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .modal.hidden {
+            pointer-events: none;
+            opacity: 0;
+        }
+        .modal-content {
+            transition: transform 0.3s ease;
+        }
+        .modal.hidden .modal-content {
+            transform: scale(0.9);
+        }
+        .modal-description-list ul {
+            list-style-type: disc;
+            padding-inline-start: 20px;
+        }
+
+        /* Typing effect */
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.5em;
+            background-color: var(--primary-color);
+            animation: blink 0.7s infinite;
+            margin-left: 4px;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        /* Magnetic button style */
+        .magnetic-button {
+            transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+    </style>
+</head>
+<body class="antialiased">
+    <div class="cursor-hover-effect"></div>
+    <div id="particles-js"></div>
+
+    <!-- Header and Navigation -->
+    <header class="bg-white/30 dark:bg-gray-900/30 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-lg">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-red-600">
+                <span lang="ar">ع.أ</span>
+                <span lang="en">A.A</span>
+            </div>
+            <div class="hidden md:flex space-x-8 rtl:space-x-reverse items-center">
+                <a href="#home" class="nav-link text-gray-700 dark:text-gray-300 hover:text-red-600 font-semibold">
+                    <span lang="ar">الرئيسية</span><span lang="en">Home</span>
+                </a>
+                <a href="#about" class="nav-link text-gray-700 dark:text-gray-300 hover:text-red-600 font-semibold">
+                    <span lang="ar">عني</span><span lang="en">About</span>
+                </a>
+                <a href="#experience" class="nav-link text-gray-700 dark:text-gray-300 hover:text-red-600 font-semibold">
+                    <span lang="ar">الخبرات</span><span lang="en">Experience</span>
+                </a>
+                <a href="#skills" class="nav-link text-gray-700 dark:text-gray-300 hover:text-red-600 font-semibold">
+                    <span lang="ar">المهارات</span><span lang="en">Skills</span>
+                </a>
+                <a href="#contact" class="nav-link text-gray-700 dark:text-gray-300 hover:text-red-600 font-semibold">
+                    <span lang="ar">اتصل بي</span><span lang="en">Contact</span>
+                </a>
+            </div>
+            <div class="flex items-center space-x-4 rtl:space-x-reverse">
+                <button id="theme-toggle" class="text-gray-700 dark:text-gray-300">
+                    <svg id="theme-toggle-dark-icon" class="hidden h-6 w-6" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-toggle-light-icon" class="hidden h-6 w-6" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                </button>
+                <button id="lang-toggle" class="text-gray-700 dark:text-gray-300 font-semibold">
+                    <span lang="ar">EN</span><span lang="en">AR</span>
+                </button>
+                <button id="mobile-menu-button" class="md:hidden text-gray-700 dark:text-gray-300">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 bg-white/30 dark:bg-gray-900/30 backdrop-blur-lg">
+            <a href="#home" class="block py-2 nav-link text-gray-700 dark:text-gray-300"><span lang="ar">الرئيسية</span><span lang="en">Home</span></a>
+            <a href="#about" class="block py-2 nav-link text-gray-700 dark:text-gray-300"><span lang="ar">عني</span><span lang="en">About</span></a>
+            <a href="#experience" class="block py-2 nav-link text-gray-700 dark:text-gray-300"><span lang="ar">الخبرات</span><span lang="en">Experience</span></a>
+            <a href="#skills" class="block py-2 nav-link text-gray-700 dark:text-gray-300"><span lang="ar">المهارات</span><span lang="en">Skills</span></a>
+            <a href="#contact" class="block py-2 nav-link text-gray-700 dark:text-gray-300"><span lang="ar">اتصل بي</span><span lang="en">Contact</span></a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 pt-24 relative z-10">
+        <!-- Home Section -->
+        <section id="home" class="min-h-screen flex items-center">
+            <div class="text-center w-full">
+                <div class="reveal">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                        <span lang="ar">عبد الرحمن احمد</span>
+                        <span lang="en">Abdelrahman Ahmed</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-red-600 font-semibold mb-8 h-12">
+                        <span id="typing-ar"></span>
+                        <span id="typing-en"></span>
+                        <span class="typing-cursor"></span>
+                    </p>
+                    <div class="space-y-4 sm:space-y-0 sm:space-x-4 rtl:sm:space-x-reverse">
+                        <a href="#contact" class="magnetic-button inline-block bg-red-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-red-700 transition duration-300 shadow-lg hover:shadow-red-500/50">
+                            <span lang="ar">تواصل معي</span><span lang="en">Contact Me</span>
+                        </a>
+                        <a href="عبد الرحمن محمود عبد العال (1).pdf" download target="_blank" class="magnetic-button inline-block border-2 border-red-600 text-red-600 font-bold py-3 px-8 rounded-lg hover:bg-red-600 hover:text-white transition duration-300">
+                            <span lang="ar">تحميل السيرة الذاتية</span><span lang="en">Download CV</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="py-20">
+            <div class="text-center mb-12 reveal-right">
+                <h2 class="text-3xl md:text-4xl font-bold border-b-4 border-red-600 inline-block pb-2">
+                    <span lang="ar">عني</span><span lang="en">About Me</span>
+                </h2>
+            </div>
+            <div class="max-w-4xl mx-auto card p-8 rounded-lg shadow-lg reveal-left tilt-effect">
+                <h3 class="text-2xl font-bold mb-4 text-red-600">
+                    <span lang="ar">الهدف الوظيفي</span><span lang="en">Career Objective</span>
+                </h3>
+                <p class="text-lg leading-relaxed">
+                    <span lang="ar">مدير شؤون إدارية وعلاقات عامة بخبرة تمتد لعدة سنوات في قيادة العمليات الإدارية وتنظيم الهياكل المؤسسية، ومتمكن في تطوير سياسات العمل وتحسين الأداء الداخلي. أتمتع أيضا بخلفية تقنية متميزة في مجال تكنولوجيا المعلومات، تشمل البرمجة الدعم الفني، وإدارة الأنظمة، مما يمنحني القدرة على فهم وتحليل التحديات التقنية والإدارية وتنفيذ حلول متكاملة. أسعى للانضمام إلى مؤسسة ديناميكية تقدر التنوع في المهارات الأساهم في تطوير بيئة العمل وتحسين تجربة الموظفين والعملاء، ودعم التحول الرقمي، وتعزيز الصورة المؤسسية أمام الجهات الرسمية والمجتمعية. أطمح إلى تسخير خبراتي المتنوعة في بناء فرق عمل فعالة. وتحقيق التكامل بين الإدارة الحديثة والتقنية الذكية لتحقيق رؤية الشركة وأهدافها الاستراتيجية.</span>
+                    <span lang="en">A highly motivated Administrative Affairs and Public Relations Manager with extensive experience in organizational leadership, employee relations, and public engagement, coupled with a solid technical background in Information Technology, programming, and technical support. Combining strategic administrative management with hands-on IT expertise, I aim to contribute to a forward-thinking organization by improving internal operations, optimizing workflows, and supporting digital transformation initiatives. My goal is to enhance organizational effectiveness, elevate internal and external communication, and build a strong corporate presence in compliance with regulatory standards. Passionate about bridging the gap between administrative systems and technology to drive sustainable success and employee engagement.</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- Work Experience Section -->
+        <section id="experience" class="py-20">
+            <div class="text-center mb-12 reveal-left">
+                <h2 class="text-3xl md:text-4xl font-bold border-b-4 border-red-600 inline-block pb-2">
+                    <span lang="ar">الخبرات العملية</span><span lang="en">Work Experience</span>
+                </h2>
+            </div>
+            <div id="experience-container" class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Experience items will be injected here by JS -->
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20">
+             <div class="text-center mb-12 reveal-right">
+                <h2 class="text-3xl md:text-4xl font-bold border-b-4 border-red-600 inline-block pb-2">
+                    <span lang="ar">المهارات</span><span lang="en">Skills</span>
+                </h2>
+            </div>
+            <div id="skills-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Skill cards will be injected here by JS -->
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold border-b-4 border-red-600 inline-block pb-2"><span lang="ar">اتصل بي</span><span lang="en">Contact Me</span></h2>
+            </div>
+            <div class="max-w-4xl mx-auto card p-8 rounded-lg shadow-lg reveal tilt-effect">
+                <form action="#" method="POST">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block mb-2 font-semibold"><span lang="ar">الاسم</span><span lang="en">Name</span></label>
+                            <input type="text" id="name" name="name" class="w-full p-3 rounded-lg border-none bg-gray-200/50 dark:bg-gray-800/50 focus:outline-none focus:ring-2 focus:ring-red-500">
+                        </div>
+                        <div>
+                            <label for="email" class="block mb-2 font-semibold"><span lang="ar">البريد الإلكتروني</span><span lang="en">Email</span></label>
+                            <input type="email" id="email" name="email" class="w-full p-3 rounded-lg border-none bg-gray-200/50 dark:bg-gray-800/50 focus:outline-none focus:ring-2 focus:ring-red-500">
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <label for="message" class="block mb-2 font-semibold"><span lang="ar">الرسالة</span><span lang="en">Message</span></label>
+                        <textarea id="message" name="message" rows="5" class="w-full p-3 rounded-lg border-none bg-gray-200/50 dark:bg-gray-800/50 focus:outline-none focus:ring-2 focus:ring-red-500"></textarea>
+                    </div>
+                    <div class="text-center mt-6">
+                        <button type="submit" class="magnetic-button bg-red-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-red-700 transition duration-300 shadow-lg hover:shadow-red-500/50"><span lang="ar">إرسال الرسالة</span><span lang="en">Send Message</span></button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-8 relative z-10">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex justify-center space-x-6 rtl:space-x-reverse mb-4">
+                <a href="mailto:Abdelrahmanmah8@gmail.com" class="text-gray-500 dark:text-gray-400 hover:text-red-600"><svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M.05 6.25A2.25 2.25 0 0 1 2.25 4h19.5A2.25 2.25 0 0 1 24 6.25v11.5A2.25 2.25 0 0 1 21.75 20H2.25A2.25 2.25 0 0 1 .05 17.75V6.25Zm2.25-.75a.75.75 0 0 0-.75.75v11.5c0 .414.336.75.75.75h19.5a.75.75 0 0 0 .75-.75V6.25a.75.75 0 0 0-.75-.75H2.25ZM12 12.5a.75.75 0 0 1-.53-1.28l7.5-7.5a.75.75 0 1 1 1.06 1.06l-7.5 7.5a.75.75 0 0 1-.53.22Z" clip-rule="evenodd" /></svg></a>
+                <a href="https://wa.me/966535144389" target="_blank" class="text-gray-500 dark:text-gray-400 hover:text-red-600"><svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2m.01 1.67c4.56 0 8.25 3.69 8.25 8.25 0 4.56-3.69 8.25-8.25 8.25-1.53 0-3-.42-4.29-1.19l-.3-.18-3.18.83.85-3.1-.2-.32c-.85-1.33-1.31-2.84-1.31-4.41 0-4.56 3.69-8.25 8.25-8.25m4.52 9.5c-.25-.13-1.47-.72-1.7-.81-.23-.09-.39-.13-.56.13-.17.25-.64.81-.79.98-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.12-.51.12-.12.27-.3.4-.45.14-.15.19-.25.29-.42.1-.17.05-.31-.02-.44s-.56-1.34-.76-1.84c-.2-.48-.4-.42-.55-.42-.14 0-.3 0-.46 0-.16 0-.42.06-.64.31-.22.25-.86.84-.86 2.05 0 1.21.88 2.37 1 2.54.12.17 1.74 2.65 4.22 3.72.59.25 1.05.4 1.41.51.61.2 1.17.17 1.6.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.07-.1-.23-.16-.48-.28Z"/></svg></a>
+            </div>
+            <p class="text-gray-500 dark:text-gray-400 text-sm">
+                <span lang="ar">© ٢٠٢٤ عبد الرحمن احمد. جميع الحقوق محفوظة.</span><span lang="en">© 2024 Abdelrahman Ahmed. All rights reserved.</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Universal Modal -->
+    <div id="universal-modal" class="modal hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="modal-content card max-w-2xl w-full rounded-lg shadow-2xl p-8 relative">
+            <button id="modal-close-btn" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-3xl font-bold">&times;</button>
+            <h3 id="modal-title" class="text-2xl font-bold text-red-600 mb-2"></h3>
+            <p id="modal-subtitle" class="font-semibold mb-4"></p>
+            <div id="modal-description" class="modal-description-list text-gray-700 dark:text-gray-300 space-y-2"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Particle JS Background ---
+            particlesJS("particles-js", {
+                "particles": {"number": {"value": 80, "density": {"enable": true, "value_area": 800}}, "color": {"value": "#ef4444"}, "shape": {"type": "circle"}, "opacity": {"value": 0.5, "random": false}, "size": {"value": 3, "random": true}, "line_linked": {"enable": true, "distance": 150, "color": "#888888", "opacity": 0.4, "width": 1}, "move": {"enable": true, "speed": 2, "direction": "none", "out_mode": "out"}},
+                "interactivity": {"detect_on": "canvas", "events": {"onhover": {"enable": true, "mode": "grab"}, "onclick": {"enable": true, "mode": "push"}}, "modes": {"grab": {"distance": 140, "line_linked": {"opacity": 1}}, "push": {"particles_nb": 4}}},
+                "retina_detect": true
+            });
+
+            // --- Custom Cursor Hover Effect Logic ---
+            const cursorHover = document.querySelector('.cursor-hover-effect');
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+            if (!isTouchDevice) {
+                cursorHover.style.display = 'block';
+                document.addEventListener('mousemove', e => {
+                    cursorHover.style.left = e.clientX + 'px';
+                    cursorHover.style.top = e.clientY + 'px';
+                });
+
+                document.querySelectorAll('a, button, .tilt-effect').forEach(el => {
+                    el.addEventListener('mouseenter', () => cursorHover.classList.add('visible'));
+                    el.addEventListener('mouseleave', () => cursorHover.classList.remove('visible'));
+                });
+            }
+
+            // --- Theme Toggle ---
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+            const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+            if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                themeToggleLightIcon.classList.remove('hidden');
+            } else {
+                themeToggleDarkIcon.classList.remove('hidden');
+            }
+            themeToggleBtn.addEventListener('click', () => {
+                themeToggleDarkIcon.classList.toggle('hidden');
+                themeToggleLightIcon.classList.toggle('hidden');
+                document.documentElement.classList.toggle('dark');
+                localStorage.setItem('color-theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+            });
+
+            // --- Language Toggle ---
+            const langToggleBtn = document.getElementById('lang-toggle');
+            const htmlEl = document.documentElement;
+            langToggleBtn.addEventListener('click', () => {
+                htmlEl.lang = htmlEl.lang === 'ar' ? 'en' : 'ar';
+                htmlEl.dir = htmlEl.dir === 'rtl' ? 'ltr' : 'rtl';
+                typeWriter();
+            });
+
+            // --- Mobile Menu ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            });
+
+            // --- Typing Effect ---
+            const typingArEl = document.getElementById('typing-ar');
+            const typingEnEl = document.getElementById('typing-en');
+            const textAr = "مهندس نظم معلومات - مدير الشؤون الإدارية والعلاقات العامة وتقنية المعلومات";
+            const textEn = "Information Systems Engineer | Administrative, PR & IT Manager";
+            let typeInterval;
+            
+            function typeWriter() {
+                clearInterval(typeInterval);
+                let typeIndex = 0;
+                const currentLang = htmlEl.lang;
+                const el = currentLang === 'ar' ? typingArEl : typingEnEl;
+                const text = currentLang === 'ar' ? textAr : textEn;
+                typingArEl.innerHTML = '';
+                typingEnEl.innerHTML = '';
+
+                typeInterval = setInterval(() => {
+                    if (typeIndex < text.length) {
+                        el.innerHTML += text.charAt(typeIndex);
+                        typeIndex++;
+                    } else {
+                        clearInterval(typeInterval);
+                    }
+                }, 50);
+            }
+            typeWriter();
+
+            // --- Data ---
+            const experienceData = [
+                {
+                    title_ar: "مدير الشؤون الإدارية والعلاقات العامة", title_en: "Director of Administration and Public Relations",
+                    subtitle_ar: "شركة سما تاكسي", subtitle_en: "Sama Taxi",
+                    period_ar: "٢٠٢٤ - مستمر", period_en: "2024 - Present",
+                    details_ar: ["إدارة جميع شؤون الموظفين (التوظيف، العقود، الترقيات، الإجازات، الرواتب).", "إعداد وتنفيذ السياسات الإدارية وتطوير اللوائح الداخلية.", "متابعة الأداء العام للموظفين وتقديم تقارير دورية للإدارة التنفيذية.", "تمثيل الشركة أمام الجهات الحكومية.", "إعداد المراسلات الرسمية والخطابات والعقود.", "التنسيق مع وسائل الإعلام لتعزيز الصورة الذهنية للشركة.", "تنظيم الحملات التوعوية والمناسبات الخاصة.", "الإشراف على امتثال الشركة للأنظمة والتعليمات."] ,
+                    details_en: ["Managed all HR functions: hiring, contracts, payroll, leave, and promotions.", "Developed and implemented internal policies and administrative procedures.", "Supervised employee performance and prepared regular executive reports.", "Represented the company with government authorities.", "Drafted official correspondence, reports, and contracts.", "Led media and public relations efforts to improve brand visibility.", "Coordinated awareness campaigns and corporate events.", "Ensured compliance with all applicable laws and regulations."]
+                },
+                {
+                    title_ar: "متخصص في تكنولوجيا المعلومات ومبرمج", title_en: "IT Specialist and Programmer",
+                    subtitle_ar: "شركة العتيق", subtitle_en: "Al-Atiq",
+                    period_ar: "٢٠٢٠ - ٢٠٢٢", period_en: "2020 - 2022",
+                    details_ar: ["تشخيص المشاكل ومعالجتها بواسطة 'يونكس وويندوز'.", "ضمان توفر الشبكة والنظام والبيانات وسلامتها.", "مساعدة فنيي المتاجر في تشخيص المركبات والمعدات.", "توفير الدعم الفني من المستوى الأول لموظفي مكتب المساعدات.", "تنفيذ سياسات الشركة للحفاظ على سلامة وأمن البيانات.", "مراقبة أداء الشبكة وأمانها."],
+                    details_en: ["Diagnosed and resolved issues using 'Unix & Windows'.", "Ensured network, system, and data availability and integrity.", "Assisted shop technicians in diagnosing vehicles and equipment.", "Provided first-level troubleshooting for helpdesk personnel.", "Implemented company policies to maintain data security.", "Monitored network performance and security."]
+                },
+                {
+                    title_ar: "محاسب", title_en: "Accountant",
+                    subtitle_ar: "شركة المزرعة", subtitle_en: "Almazraea",
+                    period_ar: "٢٠١٩ - ٢٠٢٠", period_en: "2019 - 2020",
+                    details_ar: ["إعداد إدخالات دفتر اليومية للمحاسبة بين الشركات الشقيقة.", "مسؤول عن فواتير الفائدة وإعداد التسويات.", "ضمان المعالجة الدقيقة للمعاملات المالية بين الشركات.", "المساعدة في توحيد النتائج المالية للشركة."],
+                    details_en: ["Prepared journal entries for intercompany accounting.", "Responsible for interest billing and preparing reconciliations.", "Ensured accurate and timely processing of intercompany financial transactions.", "Assisted in standardizing the company's financial results."]
+                },
+                {
+                    title_ar: "دعم فني", title_en: "Technical Support",
+                    subtitle_ar: "فودافون", subtitle_en: "Vodafone",
+                    period_ar: "٢٠١٧ - ٢٠١٩", period_en: "2017 - 2019",
+                    details_ar: ["دعم أعمال الإصلاح بموجب الضمان.", "التعامل مع نقل معدات الشبكة والخوادم.", "توفير صيانة وتطوير وإصلاحات للتطبيقات الحالية.", "ضمان توفر الشبكة والنظام والبيانات.", "توفير الدعم الفني من المستوى الأول."],
+                    details_en: ["Supported repair jobs under warranty.", "Handled the relocation of network equipment and servers.", "Provided maintenance, development, and bug fixes for applications.", "Ensured network, system, and data availability.", "Provided first-level technical support."]
+                }
+            ];
+
+            const skillsData = [
+                {
+                    title_ar: "مهارات إدارية وعلاقات عامة", title_en: "Administrative & PR Skills",
+                    details_ar: ["إدارة الأعمال الإدارية", "التخطيط الاستراتيجي", "تطوير الهيكل التنظيمي", "إدارة الموارد البشرية", "قيادة الفرق والإشراف", "تحسين سير العمل والإجراءات", "علاقات الموظفين", "التوظيف والاستقطاب", "إدارة الرواتب والحضور", "الالتزام بنظام العمل السعودي", "أنظمة تقييم الأداء", "تطوير السياسات والإجراءات", "العلاقات الحكومية والعامة", "إعداد الخطابات والتقارير", "إدارة الأزمات والتعامل الإعلامي", "تنظيم الفعاليات والأنشطة", "تمثيل العلامة التجارية"],
+                    details_en: ["Administrative Management", "Strategic Planning", "Organizational Development", "Human Resources Management", "Team Leadership & Supervision", "Workflow Optimization", "Employee Relations", "Recruitment & Onboarding", "Payroll & Attendance Management", "Saudi Labor Law Compliance", "Performance Evaluation Systems", "Policy & Procedure Development", "Government & Public Relations", "Official Correspondence & Reporting", "Crisis & Media Management", "Event Planning & Coordination", "Brand Representation"]
+                },
+                {
+                    title_ar: "مهارات تقنية", title_en: "Technical Skills",
+                    details_ar: ["الأمن الإلكتروني", "تثبيت السيرفرات والشبكات (LAN/WAN)", "تركيب الكاميرات والأجهزة الأمنية", "استعادة البيانات المفقودة", "سيرفرات ويندوز", "تثبيت البرامج والأجهزة", "WordPress", "Photoshop", "استكشاف الأخطاء وإصلاحها", "إدارة حسابات المستخدمين", "CCNS, CISSP, MCSE"],
+                    details_en: ["Cyber Security", "Server & Network Installation (LAN/WAN)", "Security Cameras & Devices Installation", "Data Recovery", "Windows Server", "Software & Hardware Installation", "WordPress", "Photoshop", "Troubleshooting", "User Account Administration", "CCNS, CISSP, MCSE"]
+                },
+                {
+                    title_ar: "مهارات شخصية وبرمجيات", title_en: "Personal & Software Skills",
+                    details_ar: ["مايكروسوفت أوفيس (وورد, إكسل, باوربوينت)", "أدوات الاتصال (Slack, Teams, Zoom)", "أنظمة الموارد البشرية (HRMS)", "مهارات تواصل عالية", "حل المشكلات وتسوية النزاعات", "اتخاذ القرارات تحت الضغط", "السرية المهنية والنزاهة", "إدارة الوقت والمهام المتعددة", "التكيف مع بيئة العمل المتغيرة"],
+                    details_en: ["Microsoft Office (Word, Excel, PowerPoint)", "Communication Tools (Slack, Teams, Zoom)", "HRMS Systems", "Strong Communication Skills", "Problem Solving & Conflict Resolution", "Decision Making Under Pressure", "Confidentiality & Professional Integrity", "Time Management & Multitasking", "Adaptability"]
+                }
+            ];
+
+            // --- Populate Sections & Modal Logic ---
+            const experienceContainer = document.getElementById('experience-container');
+            const skillsContainer = document.getElementById('skills-container');
+            const modal = document.getElementById('universal-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalSubtitle = document.getElementById('modal-subtitle');
+            const modalDescription = document.getElementById('modal-description');
+            const modalCloseBtn = document.getElementById('modal-close-btn');
+
+            experienceData.forEach((job, index) => {
+                const card = document.createElement('div');
+                card.className = 'card p-6 rounded-lg shadow-lg reveal-left tilt-effect flex flex-col justify-between';
+                card.innerHTML = `
+                    <div>
+                        <h3 class="text-xl font-bold text-red-600"><span lang="ar">${job.title_ar}</span><span lang="en">${job.title_en}</span></h3>
+                        <p class="font-semibold"><span lang="ar">${job.subtitle_ar}</span><span lang="en">${job.subtitle_en}</span></p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1"><span lang="ar">${job.period_ar}</span><span lang="en">${job.period_en}</span></p>
+                    </div>
+                    <button class="open-modal-btn mt-4 bg-red-600/20 text-red-600 font-semibold py-2 px-4 rounded-lg hover:bg-red-600 hover:text-white transition-all duration-300 self-start" data-type="experience" data-index="${index}">
+                        <span lang="ar">عرض التفاصيل</span><span lang="en">View Details</span>
+                    </button>`;
+                experienceContainer.appendChild(card);
+            });
+            
+            skillsData.forEach((skill, index) => {
+                const card = document.createElement('div');
+                card.className = 'card p-6 rounded-lg shadow-lg reveal-right tilt-effect flex flex-col justify-between';
+                card.innerHTML = `
+                    <h3 class="text-xl font-bold text-red-600 mb-4"><span lang="ar">${skill.title_ar}</span><span lang="en">${skill.title_en}</span></h3>
+                    <button class="open-modal-btn mt-4 bg-red-600/20 text-red-600 font-semibold py-2 px-4 rounded-lg hover:bg-red-600 hover:text-white transition-all duration-300 self-start" data-type="skill" data-index="${index}">
+                        <span lang="ar">عرض المهارات</span><span lang="en">View Skills</span>
+                    </button>`;
+                skillsContainer.appendChild(card);
+            });
+
+            document.querySelectorAll('.open-modal-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const type = e.currentTarget.dataset.type;
+                    const index = e.currentTarget.dataset.index;
+                    const data = type === 'experience' ? experienceData[index] : skillsData[index];
+                    
+                    modalTitle.innerHTML = `<span lang="ar">${data.title_ar}</span><span lang="en">${data.title_en}</span>`;
+                    modalSubtitle.innerHTML = data.subtitle_ar ? `<span lang="ar">${data.subtitle_ar}</span><span lang="en">${data.subtitle_en}</span>` : '';
+                    
+                    const details_ar_html = `<ul>${data.details_ar.map(item => `<li>${item}</li>`).join('')}</ul>`;
+                    const details_en_html = `<ul>${data.details_en.map(item => `<li>${item}</li>`).join('')}</ul>`;
+                    modalDescription.innerHTML = `<span lang="ar">${details_ar_html}</span><span lang="en">${details_en_html}</span>`;
+                    
+                    modal.classList.remove('hidden');
+                });
+            });
+
+            const closeModal = () => modal.classList.add('hidden');
+            modalCloseBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            // --- Scroll Reveal ---
+            ScrollReveal().reveal('.reveal', { distance: '50px', duration: 1000, easing: 'ease-in-out', origin: 'bottom', reset: false });
+            ScrollReveal().reveal('.reveal-left', { distance: '50px', duration: 1000, easing: 'ease-in-out', origin: 'left', reset: false });
+            ScrollReveal().reveal('.reveal-right', { distance: '50px', duration: 1000, easing: 'ease-in-out', origin: 'right', reset: false });
+
+
+            // --- Vanilla Tilt ---
+            if (!isTouchDevice) {
+                VanillaTilt.init(document.querySelectorAll(".tilt-effect"), {
+                    max: 15, speed: 400, glare: true, "max-glare": 0.5
+                });
+            }
+
+            // --- Magnetic Buttons ---
+            if (!isTouchDevice) {
+                const magneticButtons = document.querySelectorAll('.magnetic-button');
+                magneticButtons.forEach(button => {
+                    button.addEventListener('mousemove', function(e) {
+                        const {
+                            offsetX,
+                            offsetY,
+                            target
+                        } = e;
+                        const {
+                            clientWidth,
+                            clientHeight
+                        } = target;
+                        const x = (offsetX / clientWidth) * 40 - 20;
+                        const y = (offsetY / clientHeight) * 40 - 20;
+                        this.style.transform = `translate(${x}px, ${y}px)`;
+                    });
+                    button.addEventListener('mouseleave', function() {
+                        this.style.transform = 'translate(0, 0)';
+                    });
+                });
+            }
+            
+            // --- Card Glowing Border ---
+            if (!isTouchDevice) {
+                const cards = document.querySelectorAll('.card');
+                cards.forEach(card => {
+                    card.addEventListener('mousemove', e => {
+                        const rect = card.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        card.style.setProperty('--x', `${x}px`);
+                        card.style.setProperty('--y', `${y}px`);
+                    });
+                });
+            }
+
+        });
+    </script>
+</body>
+</html>
